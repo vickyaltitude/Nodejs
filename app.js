@@ -5,7 +5,7 @@ const server = http.createServer((req,res)=>{
     let method = req.method
     if(req.url === '/'){
     res.write('<html>')
-    res.write('<body><form action="/message"><input type ="text" name="message"><button>Send</button></form></body>');
+    res.write('<body><form action="/message" method="POST"><input type ="text" name="message"><button>Send</button></form></body>');
     res.write('</html>')
      return res.end();
     }
@@ -30,7 +30,8 @@ const server = http.createServer((req,res)=>{
     if(req.url === '/message' && method === 'POST'){
        fs.writeFileSync('message.text','DUMMY');
        res.statusCode = 302;
-       res.setHeader = ('Location','/')
+       res.setHeader = ('Location','/');
+       return res.end();
     }
     res.setHeader('Content-Type','text/html');
     res.write('<html>')
