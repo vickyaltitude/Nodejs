@@ -1,13 +1,25 @@
 const fs = require('fs');
+const path = require('path');
+const fsPromises = require('fs').promises;
 
-const serverFunction = (req,res) =>{
-    
+const serverFunction = async (req,res) =>{
+
     let method = req.method
     if(req.url === '/'){
-    res.write('<html>')
-    res.write('<body><form action="/message" method="POST"><input type ="text" name="message"><button>Send</button></form></body>');
-    res.write('</html>')
-     return res.end();
+        try{
+            const data =  await fsPromises.readFile(path.join(__dirname,'message.text'),"utf-8");
+                res.write('<html>')
+                res.write(`<body><p>${data}</p><form action="/message" method="POST"><input type ="text" name="message"><button>Send</button></form></body>`);
+                res.write('</html>')
+                return res.end();
+            
+        }catch(err){
+            res.write('<html>')
+            res.write(`<body><p>Unexpected error occured</p></body>`);
+            res.write('</html>')
+            return res.end();
+        }
+      
     }
     if(req.url === '/home'){
         res.write('<html>')
