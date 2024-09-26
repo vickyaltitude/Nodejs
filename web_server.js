@@ -15,7 +15,7 @@ app.use(shopFile);
 
 
 app.use('/',(req,res,next)=>{
-    res.send("<h1>404 PAGE NOT FOUND</h1>")
+    res.status(404).send("<h1>404 PAGE NOT FOUND</h1>")
 })
 
 
