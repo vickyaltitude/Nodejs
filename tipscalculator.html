@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+html,body{
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+}
+#outer-box{
+  background-color: #c4e1ff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#tip-box{
+  background-color: #f3eded;
+  box-shadow: 2px 2px 8px black;
+  width: 55%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 8px solid silver;
+  
+ 
+}
+
+input{
+  text-decoration: none;
+  height: 40px;
+  width: 250px;
+  font-size: 1rem;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+input:hover{
+background-color: #3d88c2;
+color: whitesmoke;
+  
+}
+
+input:focus{
+background-color: #3d88c2;
+color: whitesmoke;
+
+}
+input:focus::placeholder{
+  color: whitesmoke;
+}
+input:hover::placeholder{
+  color: whitesmoke;
+}
+
+h1{
+  margin: 0;
+  padding: 0;
+}
+#heading{
+
+  font-size: 2rem;
+  background-color: #3d88c2;
+  color: whitesmoke;
+  text-align: center;
+  text-shadow: 2px 2px 4px black;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  
+  
+
+}
+
+#select{
+  text-align: center;
+  width: 220px;
+  height: 35px;
+  font-size: 1rem;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+
+button{
+  height: 35px;
+  font-size: 1rem;
+  width: 100px;
+  border-radius: 15px;
+  text-decoration: none;
+  
+}
+
+button:hover{
+  background-color: #3978a7;
+  color: whitesmoke;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+#resultT{
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  background-color: #3d88c2;
+  text-shadow: 2px 2px 2px black;
+  
+  color: whitesmoke;
+  border-radius: 10px;
+  
+}
+    </style>
+</head>
+<body>
+  <section id="outer-box">
+    <section id="tip-box">
+      <section id="heading">
+        <h1>Tips Calculator</h1>
+      </section>
+      <p>Enter Your Bill Amount</p>
+
+      <input type="number" id="bill" placeholder="Rs.">
+
+      <p><label for="select">How Was The Service</label></p>
+      <select id="select">
+        <option value="Excellent-20%">Excellent-20%</option>
+        <option value="Medium-10%">Medium-10%</option>
+        <option value="Not So Good-5%">Not So Good-5%</option>
+      </select>
+      <p>How Many People Are Sharing The Bill</p>
+      <input type="number" id="share">
+      <p> <button type="submit" id="calci">Calculate</button></p>
+      <h2>Tip Amount</h2>
+    </section>
+  </section>
+
+  <script>
+    let box = document.getElementById("tip-box");
+let bill = document.getElementById("bill");
+let service = document.getElementById("select");
+let share = document.getElementById("share");
+let btn = document.getElementById("calci");
+let resultTag = document.createElement("h2");
+    resultTag.setAttribute("id","resultT");
+
+
+function tipCalculate(){
+
+
+    if(document.getElementById("result")){
+      document.getElementById("result").remove();
+    }
+
+  else if(bill.value === "" || share.value === "" ||
+         bill.value == 0 || share.value == 0){
+
+    alert("Please enter values to calculate");
+    
+  }
+
+  else if(service.value === "Excellent-20%"){
+
+    let resultA = (bill.value*20/100) / share.value;
+    let roundA = Math.floor(resultA);
+    
+        resultTag.innerText = `Rs.${roundA} For Each Person`;
+        box.appendChild(resultTag);
+        
+    
+  }
+
+  else if(service.value ===  "Medium-10%"){
+
+    let resultB = (bill.value*10/100) / share.value;
+        let roundB = Math.floor(resultB);
+
+    resultTag.innerText = `Rs.${roundB} For Each Person`;
+    box.appendChild(resultTag);
+
+  }
+
+  else if(service.value ===  "Not So Good-5%"){
+
+       let resultC = (bill.value*5/100) / share.value;
+       let roundC = Math.floor(resultC);
+      resultTag.innerText = `Rs.${roundC} For Each Person`;
+      box.appendChild(resultTag);
+
+  }
+
+
+}
+
+
+btn.addEventListener("click",tipCalculate);
+  </script>
+</body>
+</html>
