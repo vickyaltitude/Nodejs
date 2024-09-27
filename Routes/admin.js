@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
    
 
 router.get('/',(req,res,next)=>{
     
-    res.send('<h1>This is Admin</h1>')
+    res.redirect('/shop');
     
 })
 
