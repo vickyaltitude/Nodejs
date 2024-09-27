@@ -19,7 +19,7 @@ app.post('/textpage', (req, res, next) => {
 app.get('/chatpage', async (req, res, next) => {
     let texts = '';
     try {
-        texts = await fsPromise.readFile(path.join(__dirname, 'controller','groupChat.text'), 'utf8');
+        texts = await fsPromise.readFile(path.join(__dirname, 'models','groupChat.text'), 'utf8');
     } catch (err) {
         texts = 'No messages yet.';
     }
@@ -39,7 +39,7 @@ app.post('/chatpage', async (req, res, next) => {
     console.log(userDetails);
     console.log(userMessage);
 
-    await fsPromise.appendFile(path.join(__dirname,'controller', 'groupChat.text'), `<h4>${userDetails.user} : ${userMessage.message}</h4>\n`);
+    await fsPromise.appendFile(path.join(__dirname,'models', 'groupChat.text'), `<h4>${userDetails.user} : ${userMessage.message}</h4>\n`);
     res.redirect('/chatpage'); 
 });
 
