@@ -7,6 +7,7 @@ const shopFile = require('./Routes/shop');
 const path = require('path');
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname,'public')));
 
 /* app.get('^/$|/tipscalculator',(req,res)=>{
     res.sendFile(path.join(__dirname,'tipscalculator.html'))
@@ -20,10 +21,14 @@ app.get('/contact-us',(req,res)=>{
     res.sendFile(path.join(__dirname,'views','contact-us.html'));
 })
 
+app.get('/success',(req,res,next)=>{
+    res.sendFile(path.join(__dirname,'views','success.html'));
+})
 
 app.use('/',(req,res,next)=>{
     res.status(404).send("<h1>404 PAGE NOT FOUND</h1>")
 })
+
 
 
 app.listen(PORT,() => console.log(`server running on port ${PORT}`));
